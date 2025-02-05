@@ -1,7 +1,7 @@
 # main.py
 from aiogram import executor
 import logging
-from handlers import commands, echo
+from handlers import commands, echo, quiz
 from config import dp, Admins, bot
 
 
@@ -15,11 +15,14 @@ async def on_shutdown(_):
         await bot.send_message(chat_id=admin, text='Бот выключен!')
 
 
+# ====================================================================
 commands.register_handlers(dp)
+quiz.register_handlers(dp)
 
 
-
+# ==========================
 echo.register_handlers(dp)
+# ====================================================================
 
 
 if __name__ == '__main__':
