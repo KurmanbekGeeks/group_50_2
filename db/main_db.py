@@ -30,3 +30,22 @@ async def sql_insert_store_detail(product_id, info_product, category):
     cursor.execute(queries.INSERT_store_detail,
                    (product_id, info_product, category))
     db.commit()
+
+
+# =============================================================
+
+def get_db_connection():
+    conn = sqlite3.connect('db/db.sqlite')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def fetch_all_products():
+    conn = get_db_connection()
+    products = conn.execute("""
+    select * from store s
+    INNER JOIN store_detail sd on s.product_id = sd.product_id
+    """).fetchall()
+    conn.close()
+    return products
+
