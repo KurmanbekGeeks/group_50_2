@@ -49,3 +49,11 @@ def fetch_all_products():
     conn.close()
     return products
 
+
+def delete_products(product_id):
+    conn = get_db_connection()
+
+    conn.execute('DELETE FROM store_detail WHERE product_id = ?', (product_id,))
+
+    conn.commit()
+    conn.close()

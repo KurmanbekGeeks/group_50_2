@@ -2,7 +2,7 @@
 from aiogram import executor
 import logging
 from handlers import (commands, echo, quiz, FSM_registration,
-                      store_fsm, send_products)
+                      store_fsm, send_products, delete_products)
 from config import dp, Admins, bot
 import buttons
 from db import main_db
@@ -25,6 +25,7 @@ FSM_registration.register_handlers_fsm(dp)
 store_fsm.register_handlers_store(dp)
 
 send_products.register_handlers(dp)
+delete_products.register_handlers(dp)
 
 # ==========================
 echo.register_handlers(dp)
